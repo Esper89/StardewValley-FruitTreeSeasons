@@ -1,0 +1,11 @@
+{
+    "Name": "Fruit Tree Seasons",
+    "Author": "Esper89",
+    "Version": "1.0.0",
+    "Description": "Changes how fruit trees display their seasons.",
+    "UniqueID": "Esper89.FruitTreeSeasons",
+    "EntryDll": "FruitTreeSeasons.dll",
+    "MinimumApiVersion": "4.2.0",
+    "MinimumGameVersion": "1.6.15",
+    "UpdateKeys": ["GitHub:Esper89/StardewValley-FruitTreeSeasons"]
+}
