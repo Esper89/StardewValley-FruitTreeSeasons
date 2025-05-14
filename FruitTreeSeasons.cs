@@ -33,20 +33,20 @@ internal sealed class Mod : StardewModdingAPI.Mod
 
     private static void patch_FruitTree_GetCosmeticSeason(FruitTree __instance, ref Season __result)
     {
-        if (!__instance.Location.IsOutdoors && __instance.IgnoresSeasonsHere())
+        if (__instance.IgnoresSeasonsHere())
         {
-            var seasons = __instance.GetData()?.Seasons;
-            if (seasons != null && seasons.Count > 0)
-            {
-                var config = Mod.instance!.config!;
+            var config = Mod.instance!.config!;
 
-                foreach (var season in config.Seasons)
+            if (!__instance.Location.IsOutdoors && !config.Indoors) return;
+            if (__instance.Location.IsOutdoors && !config.Outdoors) return;
+
+            var seasons = __instance.GetData()?.Seasons;
+            foreach (var season in config.Seasons)
+            {
+                if (seasons?.Contains(season) ?? false)
                 {
-                    if (seasons.Contains(season))
-                    {
-                        __result = config.MapSeasons.GetValueOrDefault(season, season);
-                        return;
-                    }
+                    __result = config.MapSeasons.GetValueOrDefault(season, season);
+                    return;
                 }
             }
         }
@@ -83,6 +83,10 @@ internal sealed class Mod : StardewModdingAPI.Mod
 
 internal sealed class Config
 {
+    public bool Indoors { get; set; } = true;
+
+    public bool Outdoors { get; set; } = false;
+
     public Season[] Seasons { get; set; } = [
         Season.Summer, Season.Spring, Season.Fall, Season.Winter
     ];

@@ -4,8 +4,8 @@ Fruit Tree Seasons is a Stardew Valley mod that changes how fruit trees display 
 
 This mod makes fruit trees in greenhouses (and other indoor areas that lack seasons) take on the
 appearance of whichever season they bear fruit in, rather than always using their summer
-appearance. Fruit trees on Ginger Island (and other outdoor areas that lack seasons) will still use
-the tree's summer appearance.
+appearance. By default, fruit trees on Ginger Island (and other outdoor areas that lack seasons)
+will still use the tree's summer appearance.
 
 This mod also fixes a bug in the appearance of the leaves that come down from fruit trees when
 they're shaken; instead of using leaves for the current season (regardless of the tree's appearance)
@@ -35,6 +35,11 @@ into your `Mods` folder.
 Running Stardew Valley with Fruit Tree Seasons installed will generate `config.json` (in
 `Fruit Tree Seasons`). You can edit this file to configure the mod; make sure to restart the game
 afterwards for your changes to be applied.
+
+The `Indoors` and `Outdoors` fields can be set to control which locations this mod applies to.
+The `Indoors` field determines if this mod affects fruit trees in indoor areas that lack seasons
+(like the greenhouse) and defaults to `true`. The `Outdoors`  field determines if this mod affects
+fruit trees in outdoor areas that lack seasons (like Ginger Island) and defaults to `false`.
 
 The `Seasons` field is the order to apply season appearances; the first season on this list that a
 fruit tree bears fruit in is the one that will apply to the tree. Fruit trees that do not bear fruit
