@@ -1,4 +1,4 @@
-# Fruit Tree Seasons v1.0.0
+# Fruit Tree Seasons v1.1.0
 
 Fruit Tree Seasons is a Stardew Valley mod that changes how fruit trees display their seasons.
 
