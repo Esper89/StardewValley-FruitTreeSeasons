@@ -58,25 +58,23 @@ internal sealed class Mod : StardewModdingAPI.Mod
     private static IEnumerable<CodeInstruction> transpile_FruitTree_draw(
         IEnumerable<CodeInstruction> instructions
     ) => new CodeMatcher(instructions)
-        .MatchEndForward(
-            new CodeMatch(OpCodes.Call, AccessTools.Method(
-                typeof(Game1),
-                nameof(Game1.GetSeasonIndexForLocation)
+        .MatchEndForward([
+            new(OpCodes.Call, AccessTools.Method(
+                typeof(Game1), nameof(Game1.GetSeasonIndexForLocation)
             ))
-        )
+        ])
         .ThrowIfNotMatch(
             $"Could not transpile {typeof(FruitTree)}.{nameof(FruitTree.draw)}: method does not " +
             $"call {typeof(Game1)}.{nameof(Game1.GetSeasonIndexForLocation)}"
         )
         .Advance(1)
-        .Insert(
-            new CodeInstruction(OpCodes.Pop),
-            new CodeInstruction(OpCodes.Ldarg_0),
-            new CodeInstruction(OpCodes.Call, AccessTools.Method(
-                typeof(Mod),
-                nameof(Mod.patch_FruitTree_draw_GetSeasonIndexForLocation)
+        .Insert([
+            new(OpCodes.Pop),
+            new(OpCodes.Ldarg_0),
+            new(OpCodes.Call, AccessTools.Method(
+                typeof(Mod), nameof(Mod.patch_FruitTree_draw_GetSeasonIndexForLocation)
             ))
-        )
+        ])
         .InstructionEnumeration();
 
     private static int patch_FruitTree_draw_GetSeasonIndexForLocation(FruitTree tree)
@@ -85,10 +83,9 @@ internal sealed class Mod : StardewModdingAPI.Mod
 
 internal sealed class Config
 {
-    public Season[] Seasons { get; set; } = new[]
-    {
+    public Season[] Seasons { get; set; } = [
         Season.Summer, Season.Spring, Season.Fall, Season.Winter
-    };
+    ];
 
     public Dictionary<Season, Season> MapSeasons { get; set; } = new()
     {
